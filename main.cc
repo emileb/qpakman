@@ -62,6 +62,7 @@ bool opt_dither  = false;
 
 void FatalError(const char *message, ...)
 {
+	LOGI("FATAL ERROR: %s", message);
   fprintf(stdout, "FATAL ERROR: ");
 
   va_list argptr;

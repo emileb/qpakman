@@ -145,12 +145,19 @@ static bool ARC_CreateNeededDirs(const char *filename)
 }
 
 
-bool ARC_ExtractOneFile(int entry, const char *name)
+bool ARC_ExtractOneFile(int entry, const char *name, const char *fileout )
 {
-  const char * filename = SanitizeOutputName(name);
-  if (! filename)
-    return false;
-
+  const char * filename;
+  if( fileout )
+  {
+     filename = fileout;
+  }
+  else
+  {
+     filename = SanitizeOutputName(name);
+     if (! filename)
+       return false;
+  }
 
   ARC_CreateNeededDirs(filename);
 
@@ -161,14 +168,15 @@ bool ARC_ExtractOneFile(int entry, const char *name)
 
     if (result != ARCSP_Normal)
     {
-      StringFree(filename);
+      if(!fileout)
+        StringFree(filename);
 
       return (result != ARCSP_Failed);
     }
   }
 
 
-  if (FileExists(filename) && ! opt_force)
+  if (!fileout && FileExists(filename) && ! opt_force)
   {
     printf("FAILURE: will not overwrite file: %s\n\n", filename);
 
@@ -217,8 +225,8 @@ bool ARC_ExtractOneFile(int entry, const char *name)
     failed = true;
   }
 
-
-  StringFree(filename);
+  if( !fileout)
+    StringFree(filename);
 
   return ! failed;
 }

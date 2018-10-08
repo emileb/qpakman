@@ -21,6 +21,7 @@
 
 void ARC_CreatePAK(const char *filename);
 void ARC_ExtractPAK(const char *filename);
+bool ARC_ExtractOneFile(int entry, const char *name, const char *fileout = NULL);
 
 #endif  /* __ARCHIVE_BITS_H__ */
 

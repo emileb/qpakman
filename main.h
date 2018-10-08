@@ -20,6 +20,10 @@
 #define __QPAKMAN_MAIN_H__
 
 
+#include <android/log.h>
+#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO,"pakext", __VA_ARGS__))
+
+
 typedef enum
 {
   GAME_Quake1   = 0,
