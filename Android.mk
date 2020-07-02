@@ -16,6 +16,7 @@ LOCAL_SRC_FILES = 	arc_spec.cc u_assert.cc u_file.cc u_util.cc im_color.cc im_im
 LOCAL_LDLIBS :=  -ldl -llog -lz
 
 LOCAL_STATIC_LIBRARIES := libpng
+LOCAL_SHARED_LIBRARIES := saffal
 
 include $(BUILD_SHARED_LIBRARY)
 
